@@ -1,0 +1,140 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    ext.kotlin_version = "1.5.20"
+    ext{
+        //Kotlin
+        kotlin_version = "1.4.30"
+
+        //Versioning
+        compileSdkVersion = 30
+        buildToolsVersion = "30.0.3"
+        minSdkVersion = 22
+        targetSdkVersion = 30
+        versionCode = 1
+        versionName = "1.0"
+
+        //Plugins
+        ktlint_version = "9.2.1"
+
+        //Presentation layer
+        androidCore_version = "1.6.0"
+        appCompat_version = "1.2.0"
+        material_version = "1.4.0"
+        constraintLayout_version = "2.0.4"
+        nav_version = "2.3.4"
+        lifecycle_version = "2.3.1"
+        hilt_version = "2.28-alpha"
+        hilt_viewmodel_version = "1.0.0-alpha02"
+        coil_version = "1.2.2"
+        networkx_version = "2.2.0"
+
+
+        //Data layer
+        room_version = "2.3.0"
+        retrofit_version = '2.9.0'
+        okhttp_vesion = "4.8.0"
+        coroutine_version = "1.3.9"
+        loggingIntercepter_version = "4.7.2"
+        timber_version = "4.7.1"
+
+        //Test Libraries
+        jUnit_version = "4.13.2"
+        truth_version = "1.1.2"
+        coroutinesTest_version = "1.3.4"
+        robolectic_version = "4.5.1"
+        mockWebServer_version = "4.7.2"
+
+        //region Presentation Layer Dependencies
+        appDependencies = [
+                kotlin               : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+                androidCore          : "androidx.core:core-ktx:$androidCore_version",
+                appCompat            : "androidx.appcompat:appcompat:$appCompat_version",
+                material             : "com.google.android.material:material:$material_version",
+                constraintLayout     : "androidx.constraintlayout:constraintlayout:$constraintLayout_version",
+                liveData             : "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version",
+                viewModel            : "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version",
+                navFragment          : "androidx.navigation:navigation-fragment-ktx:$nav_version",
+                navUi                : "androidx.navigation:navigation-ui-ktx:$nav_version",
+                coil                : "io.coil-kt:coil:$coil_version",
+                networkX             : "com.github.rommansabbir:NetworkX:$networkx_version",
+
+                hiltAndroid          : "com.google.dagger:hilt-android:$hilt_version",
+                hiltAndroidCompiler  : "com.google.dagger:hilt-android-compiler:$hilt_version",
+
+                hiltViewModel        : "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewmodel_version",
+                hiltViewModelCompiler: "androidx.hilt:hilt-compiler:$hilt_viewmodel_version",
+
+                timber               : "com.jakewharton.timber:timber:$timber_version"
+        ]
+
+        //region Data Layers Dependencies
+        dataDependencies = [
+                kotlin             : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+                retrofit           : "com.squareup.retrofit2:retrofit:$retrofit_version",
+                okhttp             : "com.squareup.okhttp3:okhttp:$okhttp_vesion",
+                coroutinesCore     : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version",
+                gsonConvertor      : "com.squareup.retrofit2:converter-gson:$retrofit_version",
+                loggingIntercepter : "com.squareup.okhttp3:logging-interceptor:$loggingIntercepter_version",
+                roomRuntime        : "androidx.room:room-runtime:$room_version",
+                roomCompiler       : "androidx.room:room-compiler:$room_version",
+                roomKtx            : "androidx.room:room-ktx:$room_version",
+                hiltAndroid        : "com.google.dagger:hilt-android:$hilt_version",
+                hiltAndroidCompiler: "com.google.dagger:hilt-android-compiler:$hilt_version",
+                timber             : "com.jakewharton.timber:timber:$timber_version"
+        ]
+        //endregion
+
+        //region Domain Layer Dependencies
+        domainDependencies = [
+                kotlin        : "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version",
+                coroutinesCore: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutine_version",
+        ]
+        //endregion
+
+
+        //region Test Dependencies
+        testDependencies = [
+                //Local tests libs
+                jUnit                 : "junit:junit:$jUnit_version",
+                truth                 : "com.google.truth:truth:$truth_version",
+                coroutinesTest        : "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesTest_version",
+                robolectric           : "org.robolectric:robolectric:$robolectic_version",
+                mockWebServer         : "com.squareup.okhttp3:mockwebserver:$mockWebServer_version",
+
+                //Android tests libs
+                androidJUnit          : "androidx.test.ext:junit-ktx:1.1.2",
+                androidEspresso       : "androidx.test.espresso:espresso-core:3.3.0",
+                androidCoreTesting    : "androidx.test:core-ktx:1.3.0",
+                androidArchCoreTesting: "androidx.arch.core:core-testing:2.1.0",
+                androidTestRules      : "androidx.test:rules:1.3.0",
+                androidTestRunner     : "androidx.test:runner:1.3.0"
+        ]
+        //endregion
+
+        repositories {
+            google()
+            google()
+            mavenCentral()
+        }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:4.2.2"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
