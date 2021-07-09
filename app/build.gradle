@@ -33,6 +33,10 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    buildFeatures {
+        viewBinding true
+    }
 }
 
 dependencies {
@@ -49,6 +53,7 @@ dependencies {
 
     //Room
     api dataDependencies.roomRuntime
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt dataDependencies.roomCompiler
     api dataDependencies.roomKtx
 
