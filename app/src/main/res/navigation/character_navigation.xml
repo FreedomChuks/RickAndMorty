@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/character_nav"
+    android:id="@+id/character_navigation"
     app:startDestination="@id/character">
 
     <fragment
@@ -13,10 +13,17 @@
         <action
             android:id="@+id/action_character_to_characterDetails"
             app:destination="@id/characterDetails" />
+        <argument
+            android:name="character"
+            app:argType="com.wisetest.data.model.dto.CharacterData" />
     </fragment>
     <fragment
         android:id="@+id/characterDetails"
         android:name="com.wisetest.ui.CharacterDetails"
         android:label="fragment_character_details"
-        tools:layout="@layout/fragment_character_details" />
+        tools:layout="@layout/fragment_character_details">
+        <argument
+            android:name="character"
+            app:argType="com.wisetest.data.model.dto.CharacterData" />
+    </fragment>
 </navigation>

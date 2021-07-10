@@ -1,10 +1,12 @@
 package com.wisetest.data.model.dto
 
+import java.io.Serializable
+
 
 data class CharacterDto (
     val pages:Int,
     val results:List<CharacterData>
-)
+):Serializable
 
 data class CharacterData(
     val id:Int,
@@ -15,8 +17,8 @@ data class CharacterData(
     val gender:String,
     val location:Location,
     val image:String,
-)
+):Serializable
 
 data class Location(
     val name: String
-)
+):Serializable

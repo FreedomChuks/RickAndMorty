@@ -9,6 +9,7 @@ import android.widget.LinearLayout.VERTICAL
 import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.snackbar.Snackbar
@@ -69,6 +70,7 @@ class Character : Fragment() {
     }
 
     private fun onClick(character: CharacterData){
-
+        val action = CharacterDirections.actionCharacterToCharacterDetails(character)
+        findNavController().navigate(action)
     }
 }

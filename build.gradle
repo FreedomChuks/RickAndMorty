@@ -21,7 +21,7 @@ buildscript {
         appCompat_version = "1.2.0"
         material_version = "1.4.0"
         constraintLayout_version = "2.0.4"
-        nav_version = "2.3.4"
+        nav_version = "2.3.5"
         lifecycle_version = "2.3.1"
         lifecycle_runtime = "2.4.0-alpha01"
         circular_imageview="3.1.0"

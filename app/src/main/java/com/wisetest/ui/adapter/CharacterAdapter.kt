@@ -30,6 +30,7 @@ class CharacterAdapter(private val onClick:(CharacterData)->Unit): ListAdapter<C
                 characterImage.load(characterData.image)
                 characterLocation.text=characterData.location.name
                 status.text=characterData.status
+                being.text = characterData.species
                 binding.root.setOnClickListener {
                     characterData.let {
                         onClick(it)
