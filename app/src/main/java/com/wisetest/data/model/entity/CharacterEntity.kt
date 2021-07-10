@@ -6,7 +6,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.wisetest.utils.Constant.CHARACTER_DATA_TABLE
 import com.wisetest.utils.Constant.CHARACTER_TABLE
-import org.w3c.dom.CharacterData
 
 @Entity(tableName = CHARACTER_TABLE)
 data class CharacterEntity(
@@ -24,7 +23,7 @@ data class CharacterDataEntity (
     @ColumnInfo(name = "Species") val species:String,
     @ColumnInfo(name = "Type") val type:String,
     @ColumnInfo(name = "Gender") val gender:String,
-    @Embedded val location:LocationEntity,
+    val location:LocationEntity,
     @ColumnInfo(name = "Image") val image:String,
 )
 

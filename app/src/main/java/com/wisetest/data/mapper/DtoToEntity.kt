@@ -13,7 +13,6 @@ internal fun CharacterDto.toEntity() = CharacterEntity(
     results = results.map { it.map() }
 )
 
-
 internal fun CharacterData.map() = CharacterDataEntity(
     id=id,
     name = name,
@@ -26,3 +25,4 @@ internal fun CharacterData.map() = CharacterDataEntity(
 )
 
 fun Location.map() = LocationEntity(name)
+

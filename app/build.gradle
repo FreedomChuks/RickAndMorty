@@ -45,6 +45,8 @@ dependencies {
     api appDependencies.appCompat
     api appDependencies.material
     api appDependencies.constraintLayout
+    api appDependencies.lifecycle
+
 
     //Network
     api dataDependencies.retrofit
@@ -77,6 +79,8 @@ dependencies {
     api appDependencies.viewModel
     api appDependencies.coil
     api appDependencies.networkX
+    api appDependencies.circularImage
+
 
     //androidTestImplementation testDependencies.androidJUnit
     androidTestImplementation testDependencies.androidEspresso

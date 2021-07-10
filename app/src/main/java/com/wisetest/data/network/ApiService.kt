@@ -7,5 +7,5 @@ import retrofit2.http.GET
 interface ApiService {
     /** Api request to fetch characters from rick&morty api**/
     @GET("character")
-    fun fetchCharacters():Response<CharacterDto>
+    suspend fun fetchCharacters():Response<CharacterDto>
 }

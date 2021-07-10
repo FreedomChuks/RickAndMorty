@@ -5,17 +5,70 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout.VERTICAL
+import androidx.activity.viewModels
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.snackbar.Snackbar
 import com.wisetest.R
+import com.wisetest.data.model.dto.CharacterData
+import com.wisetest.data.model.dto.Location
+import com.wisetest.databinding.FragmentCharacterBinding
+import com.wisetest.ui.adapter.CharacterAdapter
+import com.wisetest.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.WithFragmentBindings
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
+import timber.log.Timber
 
 
 @AndroidEntryPoint
 class Character : Fragment() {
+    lateinit var binding: FragmentCharacterBinding
+    private var characterAdapter =CharacterAdapter { character -> onClick(character) }
+
+
+    private val viewModel by viewModels<CharacterVM>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_character, container, false)
+    ): View {
+        binding = FragmentCharacterBinding.inflate(inflater,container,false)
+        setUpUI()
+        subscribeObserver()
+        return binding.root
+    }
+
+    private fun setUpUI() {
+        binding.list.layoutManager= LinearLayoutManager(context, VERTICAL,false)
+        binding.list.adapter = characterAdapter
+    }
+
+    private fun subscribeObserver() {
+        lifecycleScope.launch {
+            viewModel.uiState.collect { fetch->
+                when(fetch){
+                    is ResultState.Error -> {
+                        Snackbar.make(binding.root,"${fetch.error}",Snackbar.LENGTH_LONG).show()
+                    }
+                    is ResultState.Loading -> {
+                        Timber.i("Loading")
+                    }
+                    is ResultState.Success -> {
+                        characterAdapter.submitList(fetch.data!!.results)
+                        binding.list.adapter=characterAdapter
+                        Timber.i("Success ${fetch.data}")
+                    }
+                }
+            }
+        }
+    }
+
+    private fun onClick(character: CharacterData){
+
     }
 }

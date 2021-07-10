@@ -1,19 +1,28 @@
 package com.wisetest.utils
 
 import com.google.gson.Gson
+import org.json.JSONException
+import org.json.JSONObject
 import retrofit2.Response
-import timber.log.Timber
 
 abstract class SafeApiCall {
-    suspend fun <T>safeApiCall(call:suspend ()-> Response<T>):ResultState<T> {
+    suspend fun <T:Any>safeApiCall(call:suspend ()-> Response<T>,successCallback:suspend (T?)->Unit):ResultState<T>{
         val response = call.invoke()
         return if (response.isSuccessful){
-            ResultState.Success(response.body())
+            successCallback.invoke(response.body())
+            ResultState.Success(response.body()!!)
         }else{
-            val errorResponse = response.errorBody()
-            val deserialize = Gson().toJson(errorResponse)
-            Timber.e("error response $deserialize")
-            ResultState.Error(deserialize)
+            val responseErr = response.errorBody()?.string()
+            val message = StringBuilder()
+            responseErr?.let {
+                try {
+                    message.append(JSONObject(it).getString("error"))
+                    ResultState.Error(JSONObject(it).getString("error"))
+                } catch (e: JSONException) {
+                    ResultState.Error<String>(e.message)
+                }
+            }
+            throw ApiException(message.toString())
         }
     }
 }

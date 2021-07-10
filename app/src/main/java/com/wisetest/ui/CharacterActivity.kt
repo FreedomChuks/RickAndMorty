@@ -1,15 +1,20 @@
 package com.wisetest.ui
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.wisetest.R
+import androidx.appcompat.app.AppCompatActivity
+import com.wisetest.databinding.ActivityCharacterBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 
 @AndroidEntryPoint
 class CharacterActivity : AppCompatActivity() {
+    lateinit var binding:ActivityCharacterBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_character)
+        binding = ActivityCharacterBinding.inflate(layoutInflater)
+        setContentView(binding.root)
     }
+
+
 }
