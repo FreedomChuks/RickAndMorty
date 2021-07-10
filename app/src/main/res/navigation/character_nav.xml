@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/character_nav"
+    app:startDestination="@id/character">
+
+    <fragment
+        android:id="@+id/character"
+        android:name="com.wisetest.ui.Character"
+        android:label="fragment_character"
+        tools:layout="@layout/fragment_character" >
+        <action
+            android:id="@+id/action_character_to_characterDetails"
+            app:destination="@id/characterDetails" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetails"
+        android:name="com.wisetest.ui.CharacterDetails"
+        android:label="fragment_character_details"
+        tools:layout="@layout/fragment_character_details" />
+</navigation>
