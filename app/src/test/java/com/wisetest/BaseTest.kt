@@ -42,7 +42,7 @@ internal open class BaseTest {
 
 
         apiService = Retrofit.Builder()
-            .baseUrl(BASE_URL)
+            .baseUrl(server.url(""))
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()
