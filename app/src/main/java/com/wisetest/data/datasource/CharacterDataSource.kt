@@ -1,6 +1,5 @@
 package com.wisetest.data.datasource
 
-import android.util.Log
 import com.rommansabbir.networkx.core.NetworkXCore
 import com.wisetest.data.cache.AppDatabase
 import com.wisetest.data.mapper.toDto
@@ -9,7 +8,7 @@ import com.wisetest.data.model.dto.CharacterDto
 import com.wisetest.data.model.entity.CharacterEntity
 import com.wisetest.data.network.ApiService
 import com.wisetest.utils.ResultState
-import com.wisetest.utils.SafeApiCall
+import com.wisetest.utils.SafeApiRequest
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import timber.log.Timber
@@ -18,7 +17,7 @@ import javax.inject.Inject
 class CharacterDataSource @Inject constructor(
     private val apiService: ApiService,
     private val appDatabase: AppDatabase
-):SafeApiCall() {
+):SafeApiRequest() {
 
     private suspend fun saveCharacterToDb(characterEntity: CharacterEntity)
             = appDatabase.CharacterDao().insertCharacter(characterEntity)
@@ -42,7 +41,11 @@ class CharacterDataSource @Inject constructor(
         }else{
             Timber.i("internet is not on")
             /** return cacheSource Flow**/
-            flow { emit(ResultState.Success(getCharacterCache.toDto())) }
+
+            flow {
+                emit(ResultState.Loading()) // emit loading state
+                emit(ResultState.Success(getCharacterCache.toDto()))
+            }
         }
 
     }

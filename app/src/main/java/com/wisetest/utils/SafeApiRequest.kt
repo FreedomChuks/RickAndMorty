@@ -1,11 +1,10 @@
 package com.wisetest.utils
 
-import com.google.gson.Gson
 import org.json.JSONException
 import org.json.JSONObject
 import retrofit2.Response
 
-abstract class SafeApiCall {
+abstract class SafeApiRequest {
     suspend fun <T:Any>safeApiCall(call:suspend ()-> Response<T>,successCallback:suspend (T?)->Unit):ResultState<T>{
         val response = call.invoke()
         return if (response.isSuccessful){
