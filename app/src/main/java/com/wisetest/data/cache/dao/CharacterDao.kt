@@ -13,7 +13,7 @@ interface CharacterDao {
     suspend fun insertCharacter(characterEntity: CharacterEntity)
 
     @Query("SELECT * FROM Character_Table")
-    suspend fun fetchAllCharacter(): CharacterEntity
+    suspend fun fetchAllCharacter(): List<CharacterEntity>
 
     @Query("DELETE FROM Character_Table")
     suspend fun deleteAllCharacters()

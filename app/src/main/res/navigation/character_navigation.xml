@@ -15,7 +15,7 @@
             app:destination="@id/characterDetails" />
         <argument
             android:name="character"
-            app:argType="com.wisetest.data.model.dto.CharacterData" />
+            app:argType="com.wisetest.domain.Character" />
     </fragment>
     <fragment
         android:id="@+id/characterDetails"
@@ -24,6 +24,6 @@
         tools:layout="@layout/fragment_character_details">
         <argument
             android:name="character"
-            app:argType="com.wisetest.data.model.dto.CharacterData" />
+            app:argType="com.wisetest.domain.Character" />
     </fragment>
 </navigation>

@@ -1,49 +1,32 @@
 package com.wisetest.ui
 
-import androidx.hilt.lifecycle.ViewModelInject
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wisetest.data.network.dto.CharacterDto
-import com.wisetest.data.repository.Repository
-import com.wisetest.utils.ApiException
-import com.wisetest.utils.NoInternetException
+import com.wisetest.data.repository.CharacterRepository
+import com.wisetest.domain.Character
 import com.wisetest.utils.ResultState
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.launch
-import timber.log.Timber
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
-
-class CharacterVM @ViewModelInject constructor(private val repository: Repository):ViewModel() {
+@HiltViewModel
+class CharacterVM @Inject constructor(private val repository: CharacterRepository):ViewModel() {
 
     init {
         getCharacter()
     }
 
-    private val _characterMutableLiveData = MutableLiveData<ResultState<CharacterDto>>()
-    val upcomingMovies: LiveData<ResultState<CharacterDto>> = _characterMutableLiveData
-
-    private val _uiState = MutableStateFlow<ResultState<CharacterDto>>(ResultState.Loading())
+    private val _uiState = MutableStateFlow<ResultState<List<Character>>>(ResultState.Empty())
     // The UI collects from this StateFlow to get its state updates
-    val uiState: StateFlow<ResultState<CharacterDto>> = _uiState
+    val uiState: StateFlow<ResultState<List<Character>>> = _uiState
 
-    private fun getCharacter(){
-        try {
-            viewModelScope.launch {
-                repository.getCharacter().collect {
-                    _uiState.value= it
-                }
-            }
-        }catch (e:ApiException){
-            Timber.i("error $e")
-        }
-        catch (e: NoInternetException) {
-            Timber.i("error No-Internet $e")
-        } catch (e: Exception) {
-            Timber.i("error Exception $e")
-        }
+    private  fun getCharacter(){
+        repository.fetchCharacter().onEach {
+            _uiState.value = it
+        }.launchIn(viewModelScope)
     }
 }

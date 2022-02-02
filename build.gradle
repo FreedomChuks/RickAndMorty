@@ -3,7 +3,7 @@ buildscript {
     ext.kotlin_version = "1.5.20"
     ext{
         //Kotlin
-        kotlin_version = "1.4.30"
+        kotlin_version = '1.6.10'
 
         //Versioning
         compileSdkVersion = 30
@@ -25,8 +25,8 @@ buildscript {
         lifecycle_version = "2.3.1"
         lifecycle_runtime = "2.4.0-alpha01"
         circular_imageview="3.1.0"
-        hilt_version = "2.28-alpha"
-        hilt_viewmodel_version = "1.0.0-alpha02"
+        hilt_version = '2.40.5'
+        hilt_viewmodel_version = '1.0.0'
         coil_version = "1.2.2"
         networkx_version = "2.2.0"
 
@@ -61,14 +61,10 @@ buildscript {
                 circularImage        : "de.hdodenhof:circleimageview:$circular_imageview",
                 lifecycle            :  "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle_runtime",
                 networkX             : "com.github.rommansabbir:NetworkX:$networkx_version",
-
+                timber             : "com.jakewharton.timber:timber:$timber_version",
                 hiltAndroid          : "com.google.dagger:hilt-android:$hilt_version",
                 hiltAndroidCompiler  : "com.google.dagger:hilt-android-compiler:$hilt_version",
-
-                hiltViewModel        : "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_viewmodel_version",
                 hiltViewModelCompiler: "androidx.hilt:hilt-compiler:$hilt_viewmodel_version",
-
-                timber               : "com.jakewharton.timber:timber:$timber_version"
         ]
 
         //region Data Layers Dependencies
@@ -82,9 +78,7 @@ buildscript {
                 roomRuntime        : "androidx.room:room-runtime:$room_version",
                 roomCompiler       : "androidx.room:room-compiler:$room_version",
                 roomKtx            : "androidx.room:room-ktx:$room_version",
-                hiltAndroid        : "com.google.dagger:hilt-android:$hilt_version",
-                hiltAndroidCompiler: "com.google.dagger:hilt-android-compiler:$hilt_version",
-                timber             : "com.jakewharton.timber:timber:$timber_version"
+
         ]
         //endregion
 

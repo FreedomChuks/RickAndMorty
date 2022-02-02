@@ -62,7 +62,6 @@ dependencies {
     //DI
     api appDependencies.hiltAndroid
     kapt appDependencies.hiltAndroidCompiler
-    api appDependencies.hiltViewModel
     kapt appDependencies.hiltViewModelCompiler
 
     //Timber dep- For lightweight simplified logging

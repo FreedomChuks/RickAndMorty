@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.wisetest.R
-import com.wisetest.data.network.dto.CharacterData
+import com.wisetest.domain.Character
 import com.wisetest.databinding.LayoutItemBinding
 import com.wisetest.ui.adapter.CharacterAdapter.CharacterViewHolder
 import com.wisetest.utils.Constant
 
 
-class CharacterAdapter(private val onClick:(CharacterData)->Unit): ListAdapter<CharacterData,CharacterViewHolder>(CharacterDiffCallback) {
+class CharacterAdapter(private val onClick:(Character)->Unit): ListAdapter<Character,CharacterViewHolder>(CharacterDiffCallback) {
 
     inner class CharacterViewHolder(private var binding: LayoutItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        private var characterData: CharacterData? = null
-        fun bind(characterData: CharacterData){
+        private var characterData: Character? = null
+        fun bind(characterData: Character){
             with(binding){
                 characterName.text=characterData.name
                 characterImage.load(characterData.image)
@@ -67,12 +67,12 @@ class CharacterAdapter(private val onClick:(CharacterData)->Unit): ListAdapter<C
         holder.bind(character)
     }
 
-    object CharacterDiffCallback : DiffUtil.ItemCallback<CharacterData>() {
-        override fun areItemsTheSame(oldItem: CharacterData, newItem: CharacterData): Boolean {
+    object CharacterDiffCallback : DiffUtil.ItemCallback<Character>() {
+        override fun areItemsTheSame(oldItem: Character, newItem: Character): Boolean {
             return oldItem==newItem
         }
 
-        override fun areContentsTheSame(oldItem: CharacterData, newItem: CharacterData): Boolean {
+        override fun areContentsTheSame(oldItem: Character, newItem: Character): Boolean {
             return oldItem.id == newItem.id
         }
     }

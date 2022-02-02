@@ -11,8 +11,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
-import com.wisetest.data.network.dto.CharacterData
 import com.wisetest.databinding.FragmentCharacterBinding
+import com.wisetest.domain.Character
 import com.wisetest.ui.adapter.CharacterAdapter
 import com.wisetest.utils.ResultState
 import dagger.hilt.android.AndroidEntryPoint
@@ -46,25 +46,25 @@ class Character : Fragment() {
 
     private fun subscribeObserver() {
         lifecycleScope.launch {
-            viewModel.uiState.collect { fetch->
-                when(fetch){
+            viewModel.uiState.collect { response->
+                when(response){
                     is ResultState.Error -> {
-                        Snackbar.make(binding.root,"${fetch.error}",Snackbar.LENGTH_LONG).show()
+                        Snackbar.make(binding.root,"${response.error}",Snackbar.LENGTH_LONG).show()
                     }
                     is ResultState.Loading -> {
                         Timber.i("Loading")
                     }
                     is ResultState.Success -> {
-                        characterAdapter.submitList(fetch.data!!.results)
+                        characterAdapter.submitList(response.data?.toMutableList())
                         binding.list.adapter=characterAdapter
-                        Timber.i("Success ${fetch.data}")
+                        Timber.i("Success ${response.data}")
                     }
                 }
             }
         }
     }
 
-    private fun onClick(character: CharacterData){
+    private fun onClick(character: Character){
         val action = CharacterDirections.actionCharacterToCharacterDetails(character)
         findNavController().navigate(action)
     }

@@ -1,13 +1,24 @@
 package com.wisetest.data.datasource.cache
 
-import com.wisetest.data.cache.AppDatabase
-import kotlinx.coroutines.CoroutineDispatcher
+import com.wisetest.data.cache.dao.CharacterDao
+import com.wisetest.data.cache.entities.CharacterEntity
 import javax.inject.Inject
 
 class CacheDataSource @Inject constructor(
-    val appDatabase: AppDatabase,
-    val coroutineDispatcher: CoroutineDispatcher
-    ){
+    private val appDatabase: CharacterDao,
+    ):CacheDataSourceContract{
 
-
+    override suspend fun insertAndReplaceCharacters(character: CharacterEntity) {
+     appDatabase.insertCharacter(character)
     }
+
+    override suspend fun deleteCharacters() {
+        appDatabase.deleteAllCharacters()
+    }
+
+    override suspend fun getCharacters(): List<CharacterEntity> {
+        return appDatabase.fetchAllCharacter()
+    }
+
+
+}

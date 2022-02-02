@@ -1,7 +1,9 @@
 package com.wisetest.data.datasource.cache
 
+import com.wisetest.data.cache.entities.CharacterEntity
+
 interface CacheDataSourceContract {
-    fun insertCharacters()
-    fun deleteCharacter()
-    fun getCharacters()
+    suspend fun insertAndReplaceCharacters(character:CharacterEntity)
+    suspend fun deleteCharacters()
+    suspend fun getCharacters():List<CharacterEntity>
 }
