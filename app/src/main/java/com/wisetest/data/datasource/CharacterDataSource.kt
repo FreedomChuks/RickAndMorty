@@ -5,6 +5,7 @@ import com.wisetest.data.network.ApiService
 import com.wisetest.utils.SafeApiRequest
 import javax.inject.Inject
 
+@Deprecated("No More in Use")
 class CharacterDataSource @Inject constructor(
     private val apiService: ApiService,
     private val appDatabase: AppDatabase
