@@ -5,7 +5,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.wisetest.data.cache.converters.CharacterConverter
 import com.wisetest.data.cache.dao.CharacterDao
-import com.wisetest.data.model.entity.CharacterEntity
+import com.wisetest.data.cache.entities.CharacterEntity
 
 @Database(
     entities = [CharacterEntity::class],

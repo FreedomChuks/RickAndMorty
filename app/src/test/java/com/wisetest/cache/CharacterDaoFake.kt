@@ -1,7 +1,7 @@
 package com.wisetest.cache
 
 import com.wisetest.data.cache.dao.CharacterDao
-import com.wisetest.data.model.entity.CharacterEntity
+import com.wisetest.data.cache.entities.CharacterEntity
 
 class CharacterDaoFake(
     private val db:AppDatabaseFake

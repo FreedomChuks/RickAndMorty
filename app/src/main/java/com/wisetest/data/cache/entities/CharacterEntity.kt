@@ -1,7 +1,6 @@
-package com.wisetest.data.model.entity
+package com.wisetest.data.cache.entities
 
 import androidx.room.ColumnInfo
-import androidx.room.Embedded
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.wisetest.utils.Constant.CHARACTER_DATA_TABLE
@@ -23,7 +22,7 @@ data class CharacterDataEntity (
     @ColumnInfo(name = "Species") val species:String,
     @ColumnInfo(name = "Type") val type:String,
     @ColumnInfo(name = "Gender") val gender:String,
-    val location:LocationEntity,
+    @ColumnInfo(name = "Location") val location: LocationEntity,
     @ColumnInfo(name = "Image") val image:String,
 )
 

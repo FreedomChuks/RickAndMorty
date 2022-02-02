@@ -1,11 +1,11 @@
 package com.wisetest.data.mapper
 
-import com.wisetest.data.model.dto.CharacterData
-import com.wisetest.data.model.dto.CharacterDto
-import com.wisetest.data.model.dto.Location
-import com.wisetest.data.model.entity.CharacterDataEntity
-import com.wisetest.data.model.entity.CharacterEntity
-import com.wisetest.data.model.entity.LocationEntity
+import com.wisetest.data.network.dto.CharacterData
+import com.wisetest.data.network.dto.CharacterDto
+import com.wisetest.data.network.dto.Location
+import com.wisetest.data.cache.entities.CharacterDataEntity
+import com.wisetest.data.cache.entities.CharacterEntity
+import com.wisetest.data.cache.entities.LocationEntity
 
 /** Map Dto to Entity **/
 internal fun CharacterDto.toEntity() = CharacterEntity(

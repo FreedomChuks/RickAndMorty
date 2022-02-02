@@ -3,7 +3,7 @@ package com.wisetest.data.cache.converters
 import androidx.room.TypeConverter
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.wisetest.data.model.entity.CharacterDataEntity
+import com.wisetest.data.cache.entities.CharacterDataEntity
 
 class CharacterConverter {
     private val gson = Gson()

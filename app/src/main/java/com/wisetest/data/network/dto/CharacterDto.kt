@@ -1,4 +1,4 @@
-package com.wisetest.data.model.dto
+package com.wisetest.data.network.dto
 
 import java.io.Serializable
 
@@ -15,7 +15,7 @@ data class CharacterData(
     val species:String,
     val type:String,
     val gender:String,
-    val location:Location,
+    val location: Location,
     val image:String,
 ):Serializable
 

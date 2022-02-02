@@ -3,20 +3,16 @@ package com.wisetest.ui.adapter
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.wisetest.R
-import com.wisetest.data.model.dto.CharacterData
+import com.wisetest.data.network.dto.CharacterData
 import com.wisetest.databinding.LayoutItemBinding
 import com.wisetest.ui.adapter.CharacterAdapter.CharacterViewHolder
 import com.wisetest.utils.Constant
-import timber.log.Timber
 
 
 class CharacterAdapter(private val onClick:(CharacterData)->Unit): ListAdapter<CharacterData,CharacterViewHolder>(CharacterDiffCallback) {

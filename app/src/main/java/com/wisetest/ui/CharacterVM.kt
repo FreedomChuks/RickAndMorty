@@ -5,7 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wisetest.data.model.dto.CharacterDto
+import com.wisetest.data.network.dto.CharacterDto
 import com.wisetest.data.repository.Repository
 import com.wisetest.utils.ApiException
 import com.wisetest.utils.NoInternetException

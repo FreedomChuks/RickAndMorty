@@ -4,8 +4,8 @@ import com.rommansabbir.networkx.core.NetworkXCore
 import com.wisetest.data.cache.AppDatabase
 import com.wisetest.data.mapper.toDto
 import com.wisetest.data.mapper.toEntity
-import com.wisetest.data.model.dto.CharacterDto
-import com.wisetest.data.model.entity.CharacterEntity
+import com.wisetest.data.network.dto.CharacterDto
+import com.wisetest.data.cache.entities.CharacterEntity
 import com.wisetest.data.network.ApiService
 import com.wisetest.utils.ResultState
 import com.wisetest.utils.SafeApiRequest
