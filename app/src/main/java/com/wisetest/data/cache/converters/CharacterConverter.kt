@@ -5,6 +5,7 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.wisetest.data.cache.entities.CharacterEntity
 
+@Deprecated("Not in Use")
 class CharacterConverter {
     private val gson = Gson()
 
