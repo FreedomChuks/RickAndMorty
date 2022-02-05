@@ -17,10 +17,15 @@ class CharacterRepository(
         //fetch from network
         val response = networkDataSource.fetchCharacters().data?.results
 
-        //cache data
-        response?.map { character->
-            cacheDataSource.insertAndReplaceCharacters(character.toEntity())
-        }
+         //cache data
+         response?.let { characterData->
+             characterData.map { character->
+                 cacheDataSource.insertAndReplaceCharacters(character.toEntity())
+             }
+         }
+//        response?.map { character->
+//            cacheDataSource.insertAndReplaceCharacters(character.toEntity())
+//        }
 
         //emit from cache
         val cache = cacheDataSource.getCharacters().map { it.toCharacter() }
