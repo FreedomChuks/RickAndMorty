@@ -6,13 +6,12 @@ import com.wisetest.utils.ResultState
 import com.wisetest.utils.SafeApiRequest
 import javax.inject.Inject
 
-class NetworkDataSource @Inject constructor(private val apiService: ApiService): SafeApiRequest(),NetworkDataSourceContract {
-    override suspend fun fetchCharacters(): ResultState<CharacterDto> {
+class NetworkDataSource @Inject constructor(private val apiService: ApiService): SafeApiRequest() {
+
+    suspend fun fetchCharacters():ResultState<CharacterDto>{
         return safeApiCall(
             call = { apiService.fetchCharacters()},
             successCallback = {}
         )
     }
-
-
 }
